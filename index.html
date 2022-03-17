@@ -1,1 +1,65 @@
-test
+
+
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/styles.css?t=1647556253" rel="stylesheet" type="text/css">
+            <script src="js/app.min.js?t=1647556253"></script>
+    </head>
+    <body>
+        <div id="header">
+            <div class="back-button clickable" onclick="window.history.back()"></div>
+            <div class="title">Antibiotic Guidelines</div>
+            <div class="colour-bar"></div>
+            <div class="fullscreen clickable" onclick="toggleFullscreen()"></div>
+        </div>
+
+        <div id="base-view">
+        <div id="page-container">
+            <div id="page1" class="page"></div>
+            <div id="page2" class="page"></div>
+            <div id="page3" class="page"></div>
+            <div id="page4" class="page"></div>
+
+            <script>
+                showCategories();
+
+                /* Get the documentElement (<html>) to display the page in fullscreen */
+                var elem = document.documentElement;
+                var isFullscreen = false;
+
+                function toggleFullscreen(){
+                    isFullscreen ? closeFullscreen() : openFullscreen();
+                }
+                /* View in fullscreen */
+                function openFullscreen() {
+                    
+                    isFullscreen = true;
+                    if (elem.requestFullscreen) {
+                        elem.requestFullscreen();
+                    } else if (elem.webkitRequestFullscreen) { /* Safari */
+                        elem.webkitRequestFullscreen();
+                    } else if (elem.msRequestFullscreen) { /* IE11 */
+                        elem.msRequestFullscreen();
+                    } else if (elem.webkitEnterFullscreen) {
+                        elem.webkitEnterFullscreen(); //for iphone this code worked
+                    }
+                }
+
+                /* Close fullscreen */
+                function closeFullscreen() {
+                    isFullscreen = false;
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) { /* Safari */
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { /* IE11 */
+                    document.msExitFullscreen();
+                }
+                }
+            </script>
+       
+        </div>
+            </div>
+    </body>
+</html>
