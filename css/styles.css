@@ -1,0 +1,487 @@
+html,body{
+    margin: 0;
+    font-family: sans-serif;
+    background-color: rgb(240,240,240);
+    overflow: hidden;
+}
+
+
+
+#base-view{
+    overflow: hidden;
+}
+
+#header{
+    position: relative;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: center;
+    line-height: 64px;
+    z-index: 100;
+    will-change: background-color;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#header > .title{
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+#header > .back-button{
+    display: none;
+    position: absolute;
+    top: 12px;
+    left: 2px;
+    height: 40px;
+    width: 40px;
+    border-radius: 25px;
+    background: url("data:image/svg+xml,%3C%3Fxml version='1.0' standalone='yes'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' stroke='white' height='24px' style='zoom: 1;' stroke-width='2' width='24px' class='feather feather-chevron-left' fill='none' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpolyline points='15 18 9 12 15 6'%3E%3C/polyline%3E%3C/svg%3E") no-repeat left 4px center;
+    background-size: 30px auto;
+}
+
+#header > .fullscreen{
+    position: absolute;
+    color: white;
+    top: 12px;
+    right: 8px;
+    font-size: 15px;
+    background: url('../images/fullscreen-white.svg') no-repeat center center;
+    background-size: 24px auto;
+    width: 40px;
+    height: 40px;
+}
+
+#header > .back-button.visible{
+    display: block;
+}
+
+#header > .colour-bar{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    -webkit-transition: background-color 250ms linear;
+    -ms-transition: background-color 250ms linear;
+    transition: background-color 250ms linear;
+}
+
+
+.card{
+
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: 60px auto;
+    margin: 8px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+    height: 60px;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(40,40,40);
+    overflow: hidden;
+
+}
+
+.clickable{
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+}
+
+.c-question-header{
+    height: 40px;
+    color: black;
+    font-size: 18px;
+    line-height: 40px;
+    font-weight: bold;
+    border-radius: 6px 6px 0 0;
+    border: 1px solid rgb(200,200,200);
+    padding-left: 8px;
+
+}
+
+.c-question-selection,.c-detail{
+    padding-left: 8px;
+    padding-right: 40px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    height: auto;
+    color: rgb(60,60,60);
+    font-size: 14px;
+    /* line-height: 40px; */
+    border-bottom: 1px solid rgb(200,200,200);
+    border-left: 1px solid rgb(200,200,200);
+    border-right: 1px solid rgb(200,200,200);
+}
+.c-question-selection:last-child,.c-detail:last-child{
+    border-radius: 0 0 6px 6px;
+}
+.c-question-selection:hover{
+    background-color: rgb(240,240,240);
+}
+.c-question-selection.selected{
+    background-color: green;
+    color: white;
+}
+
+#page-container{
+    overflow: hidden;
+    height: 100%;
+    width: 400%;
+    will-change: transform;
+    transition: transform 250ms ease-out;
+}
+
+#page-container:last-child{
+    border-radius: 0 0 6px 6px;
+}
+
+.page::-webkit-scrollbar {
+    display: none;
+}
+
+.page{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    overflow-y: scroll;
+    height: calc(100% - 64px);
+    float: left;
+    width: 25%;
+}
+
+.card.note{
+    background-image: url(../images/info.svg);
+    background-size: 30px auto;
+    background-position: 8px center;
+    padding: 16px;
+    padding-left: 50px;
+    height: auto;
+
+}
+
+.card.c-question, .card.c-features, .card.riskfactors{
+    height: auto;
+    margin-top: 16px;
+}
+.card > img.left{
+    pointer-events: none;
+    margin-left: 8px;
+    float: left;
+    height: 60px;
+    width: auto;
+    vertical-align: middle;
+}
+.card-text{
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    height: 100%;
+    padding-left: 16px;
+    padding-right: 40px;
+}
+.card > img.right{
+    pointer-events: none;
+    position: absolute;
+    top: 14px;
+    right: 8px;
+    height: 30px;
+    width: auto;
+}
+
+
+.card > .right-colour-bar{
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 50px;
+}
+
+.card.recommendation{
+    padding: 8px;
+    height: auto;
+}
+
+.card.recommendation > .ab{
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(27, 130, 170);
+}
+
+.card.treatment-length{
+    padding: 8px;
+    height: auto;
+}
+
+.card.treatment-length > p{
+    float: right;
+    font-weight: bolder;
+    text-align: right;
+    margin: 0;
+}
+
+.regimen-container{
+    display: flex;
+    align-items: center;
+}
+
+.dose::first-line,.frequency::first-line,.length::first-line{
+    color: rgb(54, 54, 54);
+    font-size: 20px;
+}
+
+.dose::first-line{
+    font-size: 16px;
+}
+.regimen-container > .dose, .regimen-container > .frequency,.regimen-container > .length{
+    
+    margin-top: 16px;
+    display: inline-block;
+    width: 33.33%;
+    font-size: 14px;
+    color: rgb(90, 90, 90);
+    text-align: center;
+    vertical-align: top;
+    font-weight: bolder;
+}
+
+.regimen-container > .frequency{
+    border-left: 1px solid rgb(204, 204, 204);
+    border-right: 1px solid rgb(204, 204, 204);
+}
+
+.regimen-container > .dose > .delivery{
+    width: 36px;
+    height: 36px;
+    background-color: rgb(28, 49, 94);
+    color: white;
+    margin: auto;
+    border-radius: 18px;
+    line-height: 36px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.spacer{
+    position: relative;
+    height: 40px;
+    margin: 8px;
+    text-align: center;;
+}
+
+.spacer > .line{
+    position: absolute;
+    top: 19px;
+    width: 100%;
+    height: 1px;
+    background-color: rgb(192, 192, 192);
+    z-index: 1;
+}
+
+.spacer > .text{
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    width: 100px;
+    margin: auto;
+    background-color: rgb(240,240,240);
+    z-index: 2;
+    font-size: 14px;
+    font-weight: bolder;
+    color: rgb(71, 71, 71);
+}
+
+.checkbox{
+    float: right;
+    margin-right: -32px;
+    margin-top: -7px;
+    height: 27px;
+    width: 27px;
+    border-radius: 5px;
+    border: 2px solid grey;
+    transition: all 200ms ease-out;
+    background-size: 4px auto;
+    background-position: center center;
+}
+.checkbox.checked{
+    border: 2px solid green;
+    color: white;
+    background: url("data:image/svg+xml,%3C%3Fxml version='1.0' standalone='yes'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-check' style='zoom: 1;'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E") no-repeat, green;
+    background-position: center center;
+    background-size: 27px auto;
+    
+}
+
+.button.go{
+    background-color: rgb(27, 130, 170); /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 16px;
+    padding: 16px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+}
+.res{
+    background-color: rgb(247,240,255);
+}
+.res-saturate{
+    background-color: rgb(122,126,228);
+}
+.res:hover{
+    background-color: rgb(215,217,251);
+}
+
+.ear{
+    background-color: rgb(217,240,253);
+}
+
+.ear-saturate{
+    background-color: rgb(93,188,241);
+}
+.ear:hover{
+    background-color: rgb(187,224,245);
+}
+
+.eye{
+    background-color: rgb(198,241,210);
+}
+.eye-saturate{
+    background-color: rgb(147,212,166);
+}
+.eye:hover{
+    background-color: rgb(172,234,190);
+}
+
+.den{
+    background-color: rgb(228,222,210);
+}
+.den-saturate{
+    background-color: rgb(171,119,24);
+}
+.den:hover{
+    background-color: rgb(210,203,188);
+}
+
+.cns{
+    background-color: rgb(243,243,243);
+}
+.cns-saturate{
+    background-color: rgb(201,204,208);
+}
+.cns:hover{
+    background-color: rgb(223,227,223);
+}
+
+.ski{
+    background-color: rgb(247,231,206);
+}
+.ski-saturate{
+    background-color: rgb(247,198,113);
+}
+.ski:hover{
+    background-color: rgb(239,225,205);
+}
+
+.gas{
+    background-color: rgb(255,245,237);
+}
+.gas-saturate{
+    background-color: rgb(245,130,32);
+}
+.gas:hover{
+    background-color: rgb(252,236,222);
+}
+
+.gen{
+    background-color: rgb(233,247,237);
+}
+.gen-saturate{
+    background-color: rgb(160,183,167);
+}
+.gen:hover{
+    background-color: rgb(208,228,214);
+}
+
+.black{
+    background-color: black;
+}
+
+/* .anim-page1-page2 {
+    animation: page1-page2 250ms ease-in-out;
+    animation-fill-mode: forwards;  
+}
+
+.anim-page2-page1 {
+    animation: page2-page1 250ms ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.anim-page2-page3 {
+    animation: page2-page3 250ms ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes page1-page2 {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-25%);
+    }
+}
+@-webkit-keyframes page2-page1 {
+    0% {
+        transform: translateX(-25%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+@-webkit-keyframes page2-page3 {
+    0% {
+        transform: translateX(-25%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+@-webkit-keyframes page3-page2 {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(-25%);
+    }
+} */
